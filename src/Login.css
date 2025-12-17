@@ -147,3 +147,679 @@
   padding-top: 0.5rem;
   margin: 0;
 }
+/* Login.css - добавьте эти стили к существующим */
+
+/* Модальное окно */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: modalFadeIn 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background: white;
+  border-radius: 16px;
+  padding: 0;
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  animation: modalSlideUp 0.3s ease;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  border-bottom: 1px solid #f0f0f0;
+  background: hsl(217 33% 20%);
+}
+
+.modal-title {
+  margin: 0;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.modal-close-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.modal-close-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: rotate(90deg);
+}
+
+.modal-body {
+  padding: 40px 32px;
+  text-align: center;
+}
+
+.modal-icon {
+  font-size: 3.5rem;
+  margin-bottom: 24px;
+  animation: iconBounce 2s ease infinite;
+  display: inline-block;
+}
+
+.modal-message {
+  margin: 0;
+  color: #374151;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  font-weight: 500;
+}
+
+.modal-footer {
+  padding: 24px;
+  border-top: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: center;
+  background: #fafafa;
+}
+
+.modal-ok-btn {
+  background: hsl(217 33% 20%);
+  color: white;
+  border: none;
+  padding: 14px 40px;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 140px;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.modal-ok-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.modal-ok-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+}
+
+.modal-ok-btn:hover::after {
+  left: 100%;
+}
+
+/* Анимации */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes iconBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    max-width: 400px;
+  }
+
+  .modal-header {
+    padding: 20px;
+  }
+
+  .modal-body {
+    padding: 32px 24px;
+  }
+
+  .modal-title {
+    font-size: 1.3rem;
+  }
+
+  .modal-message {
+    font-size: 1.1rem;
+  }
+
+  .modal-icon {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    width: 92%;
+    margin: 16px;
+  }
+
+  .modal-header {
+    padding: 18px;
+  }
+
+  .modal-body {
+    padding: 28px 20px;
+  }
+
+  .modal-title {
+    font-size: 1.2rem;
+  }
+
+  .modal-message {
+    font-size: 1.05rem;
+  }
+
+  .modal-icon {
+    font-size: 2.8rem;
+  }
+
+  .modal-footer {
+    padding: 20px;
+  }
+
+  .modal-ok-btn {
+    padding: 12px 32px;
+    font-size: 1rem;
+  }
+}
+
+/* Темная тема */
+@media (prefers-color-scheme: dark) {
+  .modal-content {
+    background: #1a1a1a;
+    border-color: #333;
+  }
+
+  .modal-message {
+    color: #e0e0e0;
+  }
+
+  .modal-footer {
+    background: #222;
+    border-top-color: #333;
+  }
+
+  .modal-header {
+    background: hsl(217 33% 20%);
+  }
+}
+
+/* Анимация при закрытии */
+.modal-overlay.closing {
+  animation: modalFadeOut 0.3s ease forwards;
+}
+
+.modal-content.closing {
+  animation: modalSlideDown 0.3s ease forwards;
+}
+
+@keyframes modalFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes modalSlideDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+}
+/* Добавьте эти стили в Login.css */
+
+/* Стили для кнопки политики */
+.policy-link {
+  background: none;
+  border: none;
+  color: #667eea;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  transition: all 0.3s ease;
+  margin: 5px 0;
+  display: inline;
+  font-family: inherit;
+}
+
+.policy-link:hover {
+  color: #764ba2;
+  text-decoration: none;
+}
+
+/* Модальное окно политики */
+.policy-modal {
+  max-width: 700px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.policy-body {
+  padding: 24px 32px;
+  text-align: left;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.policy-content {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.policy-section {
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.policy-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.policy-section-title {
+  color: #2d3748;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.policy-section-title::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #667eea;
+  border-radius: 50%;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.policy-text {
+  color: #4a5568;
+  margin-bottom: 12px;
+  text-align: justify;
+}
+
+.policy-list {
+  margin: 12px 0 12px 20px;
+  color: #4a5568;
+}
+
+.policy-list li {
+  margin-bottom: 8px;
+  position: relative;
+  padding-left: 5px;
+}
+
+.policy-list li::before {
+  content: "•";
+  color: #667eea;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+.contact-info {
+  background: #f7fafc;
+  padding: 16px;
+  border-radius: 8px;
+  margin-top: 16px;
+  border-left: 4px solid #667eea;
+}
+
+.contact-info p {
+  margin: 8px 0;
+  color: #2d3748;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Анимации для скролла */
+.policy-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.policy-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.policy-body::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.policy-body::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+  .policy-modal {
+    max-width: 95%;
+    margin: 10px;
+    max-height: 90vh;
+  }
+
+  .policy-body {
+    padding: 20px;
+  }
+
+  .policy-section-title {
+    font-size: 1rem;
+  }
+
+  .policy-content {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .policy-body {
+    padding: 16px;
+  }
+
+  .policy-section {
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+  }
+
+  .policy-list {
+    margin-left: 15px;
+  }
+
+  .contact-info {
+    padding: 12px;
+  }
+}
+
+/* Темная тема */
+@media (prefers-color-scheme: dark) {
+  .policy-link {
+    color: #8b9dff;
+  }
+
+  .policy-link:hover {
+    color: #a78bfa;
+  }
+
+  .policy-section-title {
+    color: #e2e8f0;
+  }
+
+  .policy-text {
+    color: #cbd5e0;
+  }
+
+  .policy-list {
+    color: #cbd5e0;
+  }
+
+  .contact-info {
+    background: #2d3748;
+    border-left-color: #8b9dff;
+  }
+
+  .contact-info p {
+    color: #e2e8f0;
+  }
+
+  .policy-section {
+    border-bottom-color: #4a5568;
+  }
+
+  .policy-body::-webkit-scrollbar-track {
+    background: #2d3748;
+  }
+
+  .policy-body::-webkit-scrollbar-thumb {
+    background: #4a5568;
+  }
+
+  .policy-body::-webkit-scrollbar-thumb:hover {
+    background: #718096;
+  }
+}
+/* Добавьте эти стили в Login.css */
+
+/* Стили для кнопки политики */
+.policy-link {
+  background: none;
+  border: none;
+  color: #667eea;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  transition: all 0.3s ease;
+  margin: 5px 0;
+  display: inline;
+  font-family: inherit;
+}
+
+.policy-link:hover {
+  color: #764ba2;
+  text-decoration: none;
+}
+
+.policy-link-inline {
+  color: #667eea;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.policy-link-inline:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
+/* Модальное окно политики */
+.policy-modal {
+  max-width: 800px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.policy-body {
+  padding: 24px 32px;
+  text-align: left;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.policy-content {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #f7fafc;
+}
+
+.policy-content h4 {
+  color: #f7fafc;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 24px 0 12px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.policy-content h4:first-child {
+  margin-top: 0;
+}
+
+.policy-content p {
+  margin-bottom: 12px;
+  text-align: justify;
+}
+
+.policy-content ul {
+  margin: 12px 0 12px 20px;
+  padding-left: 0;
+}
+
+.policy-content li {
+  margin-bottom: 8px;
+  position: relative;
+  padding-left: 5px;
+}
+
+.policy-content li::before {
+  content: "—";
+  color: #667eea;
+  position: absolute;
+  left: -15px;
+}
+
+/* Таблица для раздела 6 */
+.policy-table {
+  margin: 16px 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.policy-table-row {
+  display: flex;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.policy-table-row:last-child {
+  border-bottom: none;
+}
+
+.policy-table-cell {
+  padding: 12px 16px;
+  flex: 1;
+}
+
+.policy-table-header {
+  background: #f7fafc;
+  font-weight: 600;
+  color: #2d3748;
+  border-right: 1px solid #e5e7eb;
+  min-width: 200px;
+  max-width: 200px;
+}
+
+/* Контактная информация */
+.contact-info {
+  background: #f7fafc;
+  padding: 16px;
+  border-radius: 8px;
+  margin-top: 16px;
+  border-left: 4px solid #667eea;
+}
+
+.contact-info p {
+  margin: 8px 0;
+  color: #f7fafc;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Анимации для скролла */
+.policy-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.policy-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.policy-body::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.policy-body::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+  .policy-modal {
+    max-width: 95%;
+    margin: 10px;
+    max-height: 90vh;
+  }
+
+  .policy-body {
+    padding: 20px;
+  }
+
+  .policy-content {
+    font-size: 0.85rem;
+  }
+}

@@ -300,7 +300,7 @@ export default function Profile({ session }) {
   return (
     <div className="profile-container">
       <header className="profile-header">
-        <h1 className="profile-title">Планировщик заданий</h1>
+        <h1 className="profile-title">Планировщик задач.</h1>
         <div className="profile-user">
           <span className="profile-email">{session.user.email}</span>
           <button onClick={handleSignOut} className="btn-signout">
